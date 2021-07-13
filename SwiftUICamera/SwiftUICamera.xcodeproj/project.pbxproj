@@ -15,6 +15,7 @@
 		184D40F4269DBA2800880FA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 184D40F2269DBA2800880FA5 /* LaunchScreen.storyboard */; };
 		184D40FE269DBC4D00880FA5 /* CameraProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184D40FD269DBC4D00880FA5 /* CameraProgressBar.swift */; };
 		184D4101269DBCB800880FA5 /* SwiftUICameraModule in Frameworks */ = {isa = PBXBuildFile; productRef = 184D4100269DBCB800880FA5 /* SwiftUICameraModule */; };
+		184D41B6269E12D600880FA5 /* SwiftUICameraModule in Frameworks */ = {isa = PBXBuildFile; productRef = 184D41B5269E12D600880FA5 /* SwiftUICameraModule */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,6 @@
 		184D40F0269DBA2800880FA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		184D40F3269DBA2800880FA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		184D40F5269DBA2800880FA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		184D40FB269DBA3D00880FA5 /* SwiftUICameraModule */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SwiftUICameraModule; path = ../../SwiftUICameraModule; sourceTree = "<group>"; };
 		184D40FD269DBC4D00880FA5 /* CameraProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,6 +36,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				184D4101269DBCB800880FA5 /* SwiftUICameraModule in Frameworks */,
+				184D41B6269E12D600880FA5 /* SwiftUICameraModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +63,6 @@
 		184D40E6269DBA2600880FA5 /* SwiftUICamera */ = {
 			isa = PBXGroup;
 			children = (
-				184D40FB269DBA3D00880FA5 /* SwiftUICameraModule */,
 				184D40FC269DBA4D00880FA5 /* Example */,
 				184D40ED269DBA2800880FA5 /* Assets.xcassets */,
 				184D40E9269DBA2600880FA5 /* SceneDelegate.swift */,
@@ -116,6 +116,7 @@
 			name = SwiftUICamera;
 			packageProductDependencies = (
 				184D4100269DBCB800880FA5 /* SwiftUICameraModule */,
+				184D41B5269E12D600880FA5 /* SwiftUICameraModule */,
 			);
 			productName = SwiftUICamera;
 			productReference = 184D40E4269DBA2600880FA5 /* SwiftUICamera.app */;
@@ -144,6 +145,9 @@
 				Base,
 			);
 			mainGroup = 184D40DB269DBA2600880FA5;
+			packageReferences = (
+				184D41B4269E12D600880FA5 /* XCRemoteSwiftPackageReference "SwiftUICameraModule" */,
+			);
 			productRefGroup = 184D40E5269DBA2600880FA5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -375,9 +379,25 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		184D41B4269E12D600880FA5 /* XCRemoteSwiftPackageReference "SwiftUICameraModule" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amrit42087/SwiftUICameraModule.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		184D4100269DBCB800880FA5 /* SwiftUICameraModule */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUICameraModule;
+		};
+		184D41B5269E12D600880FA5 /* SwiftUICameraModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 184D41B4269E12D600880FA5 /* XCRemoteSwiftPackageReference "SwiftUICameraModule" */;
 			productName = SwiftUICameraModule;
 		};
 /* End XCSwiftPackageProductDependency section */
