@@ -37,3 +37,13 @@ Call model.removeLastVideo() to delete last recorded video.
 Call model.flipCamera() to change camera.
 
 Call model.toggleFlash() to on/off flash.
+
+# Swift PM
+let package = Package(
+    dependencies: [
+        .Package(url: "https://github.com/amrit42087/SwiftUICameraModule.git", majorVersion: 0)
+    ]
+)
+
+
+
