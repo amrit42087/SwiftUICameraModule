@@ -261,13 +261,21 @@ public class CameraVideoConfiguration: CameraConfiguration {
 
         config = self.update(config: config)
 
-        if !service.videoOutput.availableVideoCodecTypes.contains(.h264) {
+        /*
+         Where output could be as following for funcation availableVideoCodecTypesForAssetWriter.
+         
+         hvc1, // AKA HVEC or H.265
+         avc1, // AKA H.264
+         jpeg
+         */
+        
+        if !service.videoOutput.availableVideoCodecTypesForAssetWriter(writingTo: AVFileType.mov).contains(.h264) {
             self.codec = .hevc
         }
         
         config[AVVideoCodecKey] = self.codec
         config[AVVideoScalingModeKey] = self.scalingMode
-
+        
         var compressionDict: [String: Any] = [:]
         compressionDict[AVVideoAverageBitRateKey] = NSNumber(integerLiteral: self.bitRate)
         compressionDict[AVVideoAllowFrameReorderingKey] = NSNumber(booleanLiteral: false)

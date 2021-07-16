@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  SwiftUICamera
 //
-//  Created by apple on 13.07.21.
+//  Created by apple on 16.07.21.
 //
 
 import UIKit

@@ -2,20 +2,23 @@
 //  ContentView.swift
 //  SwiftUICamera
 //
-//  Created by apple on 13.07.21.
+//  Created by apple on 16.07.21.
 //
 
 import SwiftUI
 import SwiftUICameraModule
 
 struct ContentView: View {
-
+    
     @StateObject var model = CameraModel()
     @State var isChooseTimerActive: Bool = false
-    
+
     var downloadButton: some View {
         Button(action: {
-            model.saveLastVideo()
+//            model.saveLastVideo()
+            
+            model.getLastVideoLocalUrl()
+            
         }, label: {
             Circle()
                 .foregroundColor(Color.gray.opacity(0.2))
@@ -122,7 +125,7 @@ struct ContentView: View {
                     HVVideoPreviewView(model: model.finalModel!)
                         .overlay(
                             VStack {
-                                
+
                                 HStack {
                                     crossPreviewButton
 
@@ -186,8 +189,8 @@ struct ContentView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

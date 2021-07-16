@@ -120,21 +120,25 @@ final public class CameraModel: ObservableObject {
         }
     }
     
+    // will start all camera services
     public func configure() {
         service.checkForPermissions()
         service.configure()
     }
     
+    // will stop all camera services
     public func stop() {
         service.flashMode = .off
         self.isFlashOnInternal = service.flashMode == .on
         service.stop()
     }
     
+    /// will toggle timer
     public func toggleTimer() {
         self.timer.toggle()
     }
     
+    /// will start/strop recording according to last recording state
     public func handleCapture() {
         
         if self.isRecordingInternal {
@@ -148,8 +152,10 @@ final public class CameraModel: ObservableObject {
     
     internal func endCapture() {
         
-        self.hvTimer.cancel()
-        self.progress = 0.0
+        DispatchQueue.main.async {
+            self.hvTimer.cancel()
+            self.progress = 0.0
+        }
         
         if let session = service._recordingSession {
 
@@ -157,7 +163,7 @@ final public class CameraModel: ObservableObject {
                 session.mergeClips(usingPreset: AVAssetExportPresetHighestQuality, completionHandler: { (url: URL?, error: Error?) in
                     if let url = url {
                         
-                        self.finalModelInternal = VideoPreviewModel(url: url)
+                        DispatchQueue.main.async { self.finalModelInternal = VideoPreviewModel(url: url) }
                         session.removeAllClips(removeFiles: false)
 
                     } else if let _ = error {
@@ -166,15 +172,14 @@ final public class CameraModel: ObservableObject {
                 })
             } else if let lastClipUrl = session.lastClipUrl {
                 
-                self.finalModelInternal = VideoPreviewModel(url: lastClipUrl)
-                
+                DispatchQueue.main.async { self.finalModelInternal = VideoPreviewModel(url: lastClipUrl) }
                 session.removeAllClips(removeFiles: false)
                 
             } else if session.currentClipHasStarted {
                 session.endClip(completionHandler: { (clip, error) in
                     if error == nil, let url = clip?.url {
                         
-                        self.finalModelInternal = VideoPreviewModel(url: url)
+                        DispatchQueue.main.async { self.finalModelInternal = VideoPreviewModel(url: url) }
                         session.removeAllClips(removeFiles: false)
                     } else {
                         print("Error saving video: \(error?.localizedDescription ?? "")")
@@ -190,6 +195,7 @@ final public class CameraModel: ObservableObject {
         service.changeCamera()
     }
     
+    /// will remove last video if video recorded earlier
     public func removeLastVideo() {
         if let url = self.finalModelInternal?.url {
             try? FileManager.default.removeItem(at: url)
@@ -197,6 +203,12 @@ final public class CameraModel: ObservableObject {
         self.finalModelInternal = nil
     }
     
+    /// will return URL if video recorded earlier
+    public func getLastVideoLocalUrl() -> URL? {
+        return self.finalModelInternal?.url
+    }
+    
+    /// will save video if video recorded earlier
     public func saveLastVideo() {
         
         guard let url = self.finalModelInternal?.url else { return }

@@ -1,7 +1,6 @@
-SwiftUICameraModule
-==
+# SwiftUICameraModule
 
-SwiftUICameraModule is a SwiftUI camera system designed for easy integration, customized media capture
+SwiftUICameraModule is a SwiftUI camera system designed for easy integration, customized media capture, it support H264 as a default and fallback to HEVC if H264 is unavailable.
 
 Overview
 ==
@@ -38,12 +37,12 @@ Call model.flipCamera() to change camera.
 
 Call model.toggleFlash() to on/off flash.
 
+Call model.getLastVideoLocalUrl() to get URL of last recorded video.
+
 # Swift PM
 let package = Package(
     dependencies: [
         .Package(url: "https://github.com/amrit42087/SwiftUICameraModule.git", majorVersion: 0)
     ]
 )
-
-
 

@@ -20,14 +20,6 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSCameraUsageDescription</key>
-	<string>App uses the camera for video capture.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>App uses the microphone for audio capture.</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>App saves videos to your library.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App saves videos to your library.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -56,6 +48,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
