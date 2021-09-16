@@ -122,7 +122,7 @@ struct ContentView: View {
                 Color.black.edgesIgnoringSafeArea(.all)
 
                 if model.finalModel != nil {
-                    HVVideoPreviewView(model: model.finalModel!)
+                    HVVideoPreviewView(model: model.finalModel!, cornerRadius: 20.0)
                         .overlay(
                             VStack {
 
@@ -139,7 +139,7 @@ struct ContentView: View {
                             })
                 } else {
 
-                    CameraPreview(session: model.session)
+                    CameraPreview(session: model.session, cornerRadius: 20.0)
                         .onAppear {
                             model.configure()
                         }

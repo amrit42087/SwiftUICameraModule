@@ -58,5 +58,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(EXECUTABLE_NAME) needs access to photo library</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Access to record your video</string>
+	<key>NSCameraUsageDescription</key>
+	<string>dfsdfds</string>
 </dict>
 </plist>

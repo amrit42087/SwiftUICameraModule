@@ -10,6 +10,9 @@ import AVFoundation
 
 public struct HVVideoPreviewView: UIViewRepresentable {
     
+    private var videoGravity: AVLayerVideoGravity
+    private var cornerRadius: CGFloat?
+    
     public class VideoPreviewView: UIView {
         public override class var layerClass: AnyClass {
             AVPlayerLayer.self
@@ -22,17 +25,28 @@ public struct HVVideoPreviewView: UIViewRepresentable {
     
     let model: VideoPreviewModel
     
-    public init(model: VideoPreviewModel) {
+    public init(model: VideoPreviewModel, videoGravity: AVLayerVideoGravity = .resizeAspectFill, cornerRadius: CGFloat? = nil) {
         self.model = model
+        self.videoGravity = videoGravity
+        self.cornerRadius = cornerRadius
     }
     
     public func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
         view.backgroundColor = .black
-        view.videoPreviewLayer.cornerRadius = 0
+        if let radius = cornerRadius {
+            view.videoPreviewLayer.cornerRadius = radius
+            view.clipsToBounds = true
+        } else {
+            view.videoPreviewLayer.cornerRadius = 0
+            view.clipsToBounds = false
+        }
+        
         view.videoPreviewLayer.player = AVPlayer(url: model.url)
         model.player = view.videoPreviewLayer.player
         view.videoPreviewLayer.player?.actionAtItemEnd = .none
+        view.videoPreviewLayer.videoGravity = self.videoGravity
+        
         DispatchQueue.main.async {
             view.videoPreviewLayer.player?.play()
         }
@@ -48,6 +62,10 @@ public struct HVVideoPreviewView: UIViewRepresentable {
 }
 
 public struct CameraPreview: UIViewRepresentable {
+    
+    private var videoGravity: AVLayerVideoGravity
+    private var cornerRadius: CGFloat?
+    
     public class VideoPreviewView: UIView {
         public override class var layerClass: AnyClass {
              AVCaptureVideoPreviewLayer.self
@@ -60,17 +78,25 @@ public struct CameraPreview: UIViewRepresentable {
     
     let session: AVCaptureSession
     
-    public init(session: AVCaptureSession) {
+    public init(session: AVCaptureSession, videoGravity: AVLayerVideoGravity = .resizeAspectFill, cornerRadius: CGFloat? = nil) {
         self.session = session
+        self.videoGravity = videoGravity
+        self.cornerRadius = cornerRadius
     }
     
     public func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
         view.backgroundColor = .black
-        view.videoPreviewLayer.cornerRadius = 0
+        if let radius = cornerRadius {
+            view.videoPreviewLayer.cornerRadius = radius
+            view.clipsToBounds = true
+        } else {
+            view.clipsToBounds = false
+        }
         view.videoPreviewLayer.session = session
         view.videoPreviewLayer.connection?.videoOrientation = .portrait
-
+        view.videoPreviewLayer.videoGravity = self.videoGravity
+        
         return view
     }
     
