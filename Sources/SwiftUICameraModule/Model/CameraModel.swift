@@ -227,6 +227,11 @@ final public class CameraModel: ObservableObject {
         self.isFlashOnInternal = service.flashMode == .on
     }
     
+    /// This funcation can be used for update or add new video url.
+    public func updateFinalModel(_ model: VideoPreviewModel) {
+        finalModelInternal = model
+    }
+    
     internal func saveVideo(withURL url: URL, onCompletion: ((_ success: Bool) -> ())? = nil) {
         
         PHPhotoLibrary.shared().performChanges({
